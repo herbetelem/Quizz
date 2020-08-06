@@ -10,6 +10,8 @@ REPONSE 4 :
 Nadeo
 BONNE REPONSE :
 2
+EXPLICATION :
+C'est Riot Games qui a créer ce jeux en 2006
 
 #####################################################
 
@@ -25,6 +27,8 @@ REPONSE 4 :
 Argent
 BONNE REPONSE :
 1
+EXPLICATION :
+Le rang Emeraude n'existe dans aucun jeu avec des systemes de classement classique
 
 #####################################################
 
@@ -40,6 +44,8 @@ REPONSE 4 :
 6 minutes
 BONNE REPONSE :
 3
+EXPLICATION :
+A chaque mort le dragon met 5 minutes a revenir a sa place
 
 #####################################################
 
@@ -52,10 +58,11 @@ Embrasement
 REPONSE 3 :
 Chatiment
 REPONSE 4 :
-Les Gank
+Les Ganks
 BONNE REPONSE :
 3
-
+EXPLICATION :
+Les jungles prenne le Chatiment car il leur permet d'executer les monstres de la jungle
 
 #####################################################
 
@@ -64,10 +71,12 @@ Lequel de ces skin de lux n'existe pas encore
 REPONSE 1 :
 Lux gardienne des étoiles
 REPONSE 2 :
-Lux Voleuse de Sorts
+Lux de l'academie du combat
 REPONSE 3 :
 Lux Cosmique
 REPONSE 4 :
-Projet Lux
+Lux sylvestre
 BONNE REPONSE :
 4
+EXPLICATION :
+Le seul skin de lux qui ressemble a un arbre est son skin Elementaliste
