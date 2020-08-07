@@ -75,7 +75,7 @@ while running :
                 print("lancer les scores")
 
     # LB afficher un texte
-    screen.blit(text,(500, 60))
+    # screen.blit(text,(500, 60))
 
     # * HH update le screen
     pygame.display.flip()
