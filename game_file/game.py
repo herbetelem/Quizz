@@ -20,6 +20,7 @@ class Game:
         self.variable_load = Variable_load(screen)
         # création de la class SQL
         self.sql_request = SQL_request()
+
     # update l'écran
     def update(self, screen):
 
@@ -38,10 +39,30 @@ class Game:
         for loop in range (4) :
             screen.blit(self.variable_load.round, self.variable_load.round_rect)
             self.variable_load.round_rect.y += 110 
+
         self.update_question(screen)
 
     def update_question(self, screen):
+
+        # importer la question 
         counter = 1
-        variable = self.sql_request.read_question(counter)
-        font = pygame.font.Font(None, 36)
-        text = font.render(variable, 1, (4,1,1 ))
+        self.sql_request.read_question(counter)
+        variable = self.sql_request.question_tmp[1]
+        # print la question
+        font = pygame.font.Font(None, 35)
+        text = font.render(variable, 1, (255,255,255))
+        text_rect = text.get_rect()
+        # Positionner la question
+        text_rect.x = self.variable_load.lol.get_width() + 70
+        text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - 15 )
+
+        # importer les questions 
+        self.sql_request.read_answer(counter)
+        variable = self.sql_request.question_tmp
+
+
+        
+
+
+
+        screen.blit(text, text_rect)
