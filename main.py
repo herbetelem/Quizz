@@ -4,6 +4,7 @@
 import pygame
 import math
 from game_file.game import Game
+from game_file.score import Score
 
 # INITIALISATION DE PYGAME
 pygame.init()
@@ -46,16 +47,18 @@ pygame.display.set_icon(icon_32x32)
 
 # CREATION DES VAR NESCESSAIRE
 game = Game()
+score = Score()
 running = True
 
 # LB tant que le running est égal True, la fenêtre s'affiche
 while running :
-    # * HH appliquer le background
-    screen.blit(background, (0,0))
-    
     if game.is_playing:
-        pass
+        screen.blit(game.background, (0,0))
+    elif score.score_look:
+        score.update(screen)
     else:
+        # * HH appliquer le background
+        screen.blit(background, (0,0))
         # * HH ajouter l'ecran de bienvenue
         screen.blit(play_button, play_button_rect)
         screen.blit(score_button, score_button_rect)
@@ -72,7 +75,7 @@ while running :
                 game.is_playing = True
 
             if score_button_rect.collidepoint(event.pos):
-                print("lancer les scores")
+                score.score_look = True
 
     # LB afficher un texte
     # screen.blit(text,(500, 60))
