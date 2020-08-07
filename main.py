@@ -14,10 +14,19 @@ pygame.display.set_caption("Quizz League of Legends")
 # LB Dimensionner la fenêtre
 screen = pygame.display.set_mode((1080, 720))
 
+
+
 # CREATION DU MENU
 # * HH importer et charger le background
 background = pygame.image.load('asset/bg_quizz.png')
 background = pygame.transform.scale(background, (1080, 720))
+
+# LB essai d'ecriture pour mettre les questions
+variable = "Quel est le meilleur support"
+font = pygame.font.Font(None, 36)
+text = font.render(variable, 1, (55,55,55))
+
+
 
 # * HH import des boutons du menu
 play_button = pygame.image.load('asset/new_game.png')
@@ -64,7 +73,10 @@ while running :
 
             if score_button_rect.collidepoint(event.pos):
                 print("lancer les scores")
-        
+
+    # LB afficher un texte
+    screen.blit(text,(500, 60))
+
     # * HH update le screen
     pygame.display.flip()
 
