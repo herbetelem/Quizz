@@ -3,7 +3,7 @@ import math
 
 pygame.init()
 
-background = pygame.image.load('asset/bg_quizz.png')
+background = pygame.image.load('asset/button/bg_quizz.png')
 background = pygame.transform.scale(background, (1080, 720))
 
 pygame.display.set_caption("Quizz League of Legends")
