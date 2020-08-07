@@ -76,10 +76,10 @@ while running :
             
         elif event.type == pygame.MOUSEBUTTONDOWN:
             # * HH verifier que lors du click de la souris, on est bien sur les boutons
-            if play_button_rect.collidepoint(event.pos):
+            if play_button_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == False:
                 game.is_playing = True
 
-            if score_button_rect.collidepoint(event.pos):
+            if score_button_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == False:
                 score.score_look = True
 
     # LB afficher un texte
