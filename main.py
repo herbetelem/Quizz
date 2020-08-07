@@ -81,6 +81,9 @@ while running :
 
             if score_button_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == False:
                 score.score_look = True
+                
+            if score.home_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == True:
+                score.score_look = False
 
     # LB afficher un texte
     # screen.blit(text,(500, 60))
