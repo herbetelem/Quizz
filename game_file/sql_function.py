@@ -12,7 +12,7 @@ class SQL_request:
         self.connection = sqlite3.connect("quizz.db")
         # * instance du curseur
         self.cursor = self.connection.cursor()
-        
+
     def read_question(self, id_question):
         id_question = (id_question,)
         self.cursor.execute('SELECT * FROM via_promo WHERE id = ?', id_question)
