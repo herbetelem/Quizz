@@ -17,6 +17,14 @@ class Score:
         self.logo = pygame.image.load('asset/button/LoL.png')
         # * definir l'objet sql
         self.sql_request = SQL_request()
+        # ! Laura m'a fait enlever 10 lignes !
+        # * definir l'objet retour au menu
+        self.home = pygame.image.load('asset/home.png')
+        self.home = pygame.transform.scale(self.home, (200, 75))
+        self.home_rect = self.home.get_rect()
+        self.home_rect.x = 65
+        self.home_rect.y = 580
+        
         
     def update(self, screen):
         # * je fait les update de mes different items
@@ -34,3 +42,4 @@ class Score:
             screen.blit(block,(450, y_temp - 15))
             screen.blit(text,(500, y_temp))
             y_temp += 70
+        screen.blit(self.home, self.home_rect)
