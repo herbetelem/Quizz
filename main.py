@@ -46,7 +46,7 @@ icon_32x32 = pygame.image.load("asset/favicon.png").convert_alpha()
 pygame.display.set_icon(icon_32x32)
 
 # CREATION DES VAR NESCESSAIRE
-game = Game()
+game = Game(screen)
 score = Score()
 running = True
 
@@ -54,6 +54,9 @@ running = True
 while running :
     if game.is_playing:
         screen.blit(game.background, (0,0))
+        game.update(screen) 
+
+
     elif score.score_look:
         score.update(screen)
     else:
