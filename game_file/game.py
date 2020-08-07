@@ -17,6 +17,8 @@ class Game:
         self.background = pygame.transform.scale(self.background, (1080, 720))
         # création de la class variable
         self.variable_load = Variable_load(screen)
+        # * question en cour
+        self.current_question = 1
     # update l'écran
     def update(self, screen):
 
