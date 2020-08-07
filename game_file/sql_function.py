@@ -14,16 +14,24 @@ class SQL_request:
         self.cursor = self.connection.cursor()
 
     def read_question(self, id_question):
+        # * je definit quelle id de question je vais chercher
         id_question = (id_question,)
+        # * je créer la requete
         self.cursor.execute('SELECT * FROM hh_quizz WHERE id = ?', id_question)
+        # * je formate en tuple ma reponse
         self.question_tmp = self.cursor.fetchone()
 
     def read_answer(self, id_question):
+        # * je definit quelle id de question je vais chercher
         id_question = (id_question,)
+        # * je créer la requete
         self.cursor.execute('SELECT * FROM hh_answer WHERE id_question = ?', id_question)
+        # * je formate en tuple mes reponses
         self.anwser_tmp = self.cursor.fetchall()
 
 
     def read_score(self):
-            self.cursor.execute('SELECT * FROM hh_score')
-            self.score_tmp = self.cursor.fetchall()
+        # * je créer la requete
+        self.cursor.execute('SELECT * FROM hh_score ORDER BY score DESC')
+        # * je formate en tuple mes reponses
+        self.score_tmp = self.cursor.fetchall()

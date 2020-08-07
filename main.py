@@ -24,6 +24,8 @@ background = pygame.transform.scale(background, (1080, 720))
 
 # LB essai d'ecriture pour mettre les questions
 variable = "Quel est le meilleur support"
+# LB Tresh
+# HH Senna
 font = pygame.font.Font(None, 36)
 text = font.render(variable, 1, (55,55,55))
 
