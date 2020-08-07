@@ -4,6 +4,7 @@
 import pygame
 import math
 from game_file.variable_load import Variable_load
+from game_file.sql_function import SQL_request
 
 # créer la classe game
 class Game:
@@ -17,6 +18,8 @@ class Game:
         self.background = pygame.transform.scale(self.background, (1080, 720))
         # création de la class variable
         self.variable_load = Variable_load(screen)
+        # création de la class SQL
+        self.sql_request = SQL_request()
     # update l'écran
     def update(self, screen):
 
@@ -35,3 +38,10 @@ class Game:
         for loop in range (4) :
             screen.blit(self.variable_load.round, self.variable_load.round_rect)
             self.variable_load.round_rect.y += 110 
+        self.update_question(screen)
+
+    def update_question(self, screen):
+        counter = 1
+        variable = self.sql_request.read_question(counter)
+        font = pygame.font.Font(None, 36)
+        text = font.render(variable, 1, (4,1,1 ))
