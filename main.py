@@ -18,7 +18,7 @@ screen = pygame.display.set_mode((1080, 720))
 
 # CREATION DU MENU
 # * HH importer et charger le background
-background = pygame.image.load('asset/bg_quizz.png')
+background = pygame.image.load('asset/bg/bg_quizz.png')
 background = pygame.transform.scale(background, (1080, 720))
 
 # LB essai d'ecriture pour mettre les questions
@@ -29,12 +29,12 @@ text = font.render(variable, 1, (55,55,55))
 
 
 # * HH import des boutons du menu
-play_button = pygame.image.load('asset/new_game.png')
+play_button = pygame.image.load('asset/button/new_game.png')
 play_button_rect = play_button.get_rect()
 play_button_rect.x = math.ceil(screen.get_width() / 4) - 50
 play_button_rect.y = math.ceil(screen.get_height() / 2)
 
-score_button = pygame.image.load('asset/score.png')
+score_button = pygame.image.load('asset/button/score.png')
 score_button_rect = play_button.get_rect()
 score_button_rect.x = math.ceil(screen.get_width() / 4) * 2 + 50
 score_button_rect.y = math.ceil(screen.get_height() / 2)
