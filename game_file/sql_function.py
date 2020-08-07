@@ -20,5 +20,5 @@ class SQL_request:
 
     def read_answer(self, id_question):
         id_question = (id_question,)
-        self.cursor.execute('SELECT * FROM via_promo WHERE id = ?', id_question)
+        self.cursor.execute('SELECT * FROM via_promo WHERE id_question = ?', id_question)
         self.anwser_tmp = self.cursor.fetchall()
