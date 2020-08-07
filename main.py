@@ -69,7 +69,7 @@ while running :
         elif event.type == pygame.MOUSEBUTTONDOWN:
             # * HH verifier que lors du click de la souris, on est bien sur les boutons
             if play_button_rect.collidepoint(event.pos):
-                print("lancer une partie")
+                game.is_playing = True
 
             if score_button_rect.collidepoint(event.pos):
                 print("lancer les scores")
