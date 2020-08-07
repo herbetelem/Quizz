@@ -27,6 +27,6 @@ class Score:
         y_temp = 60
         for i in range(nb_vainqueur):
             phrase = f"{self.sql_request.score_tmp[i][1]} a obtenu le score de {self.sql_request.score_tmp[i][2]}/5"
-            text = font.render(phrase, 1, (0,0,0))
+            text = font.render(phrase, 1, (255,255,255))
             screen.blit(text,(500, y_temp))
             y_temp += 60
