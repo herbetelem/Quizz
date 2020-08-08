@@ -5,7 +5,7 @@ import pygame
 import math
 from game_file.game import Game
 from game_file.score import Score
-
+from game_file.variable_load import Variable_load
 # INITIALISATION DE PYGAME
 pygame.init()
 
@@ -50,6 +50,7 @@ pygame.display.set_icon(icon_32x32)
 # CREATION DES VAR NESCESSAIRE
 game = Game(screen)
 score = Score()
+variable_load = Variable_load(screen)
 running = True
 
 # LB tant que le running est égal True, la fenêtre s'affiche
@@ -84,6 +85,29 @@ while running :
                 
             if score.home_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == True:
                 score.score_look = False
+    
+            # Changer l'image du round si il est coché
+            if variable_load.round1_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False:
+                game.round1 = True
+                game.round2 = False
+                game.round3 = False
+                game.round4 = False
+            if variable_load.round2_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False:
+                game.round2 = True
+                game.round1 = False
+                game.round3 = False
+                game.round4 = False
+            if variable_load.round3_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False:
+                game.round3 = True
+                game.round1 = False
+                game.round2 = False
+                game.round4 = False
+            if variable_load.round4_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False:
+                game.round4 = True
+                game.round1 = False
+                game.round2 = False
+                game.round3 = False
+
 
     # LB afficher un texte
     # screen.blit(text,(500, 60))

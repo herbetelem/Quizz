@@ -20,6 +20,10 @@ class Game:
         self.variable_load = Variable_load(screen)
         # création de la class SQL
         self.sql_request = SQL_request()
+        self.round1 = False
+        self.round2 = False
+        self.round3 = False
+        self.round4 = False
 
     # update l'écran
     def update(self, screen):
@@ -34,20 +38,27 @@ class Game:
             screen.blit(self.variable_load.block, self.variable_load.block_rect)
             self.variable_load.block_rect.y += 110 
 
-        # Print les ronds réponse 4 fois
-        self.variable_load.round_rect.y = math.ceil(screen.get_height() / 35 + 225)
-        variable = 10
-        for loop in range (4) :
-            if loop == variable :
-                screen.blit(self.variable_load.round_selected, self.variable_load.round_rect)
-            else :
-                screen.blit(self.variable_load.round, self.variable_load.round_rect)
-            self.variable_load.round_rect.y += 110 
-            for event in pygame.event.get() :
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.variable_load.round_rect.collidepoint(event.pos):
-                        variable = loop
+        #print les ronds 4 fois
+        if self.round1 == False :
+            screen.blit(self.variable_load.round1, self.variable_load.round1_rect)
+        else :
+            screen.blit(self.variable_load.round_selected, self.variable_load.round1_rect)
 
+        if self.round2 == False :
+            screen.blit(self.variable_load.round2, self.variable_load.round2_rect)
+        else :
+            screen.blit(self.variable_load.round_selected, self.variable_load.round2_rect)
+
+        if self.round3 == False :
+            screen.blit(self.variable_load.round3, self.variable_load.round3_rect)
+        else :
+            screen.blit(self.variable_load.round_selected, self.variable_load.round3_rect)
+
+        if self.round4 == False :
+            screen.blit(self.variable_load.round4, self.variable_load.round4_rect)
+        else :
+            screen.blit(self.variable_load.round_selected, self.variable_load.round4_rect)
+        
         self.update_question(screen)
 
     def update_question(self, screen):
@@ -80,6 +91,8 @@ class Game:
             screen.blit(text, text_rect)
             text_rect.y += 110           
             counter += 1
+        
+
         
 
 
