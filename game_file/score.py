@@ -24,8 +24,8 @@ class Score:
         self.home_rect = self.home.get_rect()
         self.home_rect.x = 65
         self.home_rect.y = 580
-        
-        
+
+
     def update(self, screen):
         # * je fait les update de mes different items
         screen.blit(self.background, (0,0))
