@@ -20,6 +20,7 @@ class Game:
         self.variable_load = Variable_load(screen)
         # création de la class SQL
         self.sql_request = SQL_request()
+
     # update l'écran
     def update(self, screen):
 
@@ -35,13 +36,52 @@ class Game:
 
         # Print les ronds réponse 4 fois
         self.variable_load.round_rect.y = math.ceil(screen.get_height() / 35 + 225)
+        variable = 10
         for loop in range (4) :
-            screen.blit(self.variable_load.round, self.variable_load.round_rect)
+            if loop == variable :
+                screen.blit(self.variable_load.round_selected, self.variable_load.round_rect)
+            else :
+                screen.blit(self.variable_load.round, self.variable_load.round_rect)
             self.variable_load.round_rect.y += 110 
+            for event in pygame.event.get() :
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.variable_load.round_rect.collidepoint(event.pos):
+                        variable = loop
+
         self.update_question(screen)
 
     def update_question(self, screen):
-        counter = 1
-        variable = self.sql_request.read_question(counter)
-        font = pygame.font.Font(None, 36)
-        text = font.render(variable, 1, (4,1,1 ))
+
+        # importer la question 
+        question = 1
+        self.sql_request.read_question(question)
+        variable = self.sql_request.question_tmp[1]
+        # print la question
+        font = pygame.font.Font(None, 35)
+        text = font.render(variable, 1, (255,255,255))
+        text_rect = text.get_rect()
+        # Positionner la question
+        text_rect.x = self.variable_load.lol.get_width() + 70
+        text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - 15 )
+        screen.blit(text, text_rect)
+
+        # importer les questions 
+        counter = 0
+        self.sql_request.read_answer(question)
+        variable = self.sql_request.anwser_tmp
+        text = font.render(variable[counter][2], 1, (255,255,255))
+        text_rect.x = self.variable_load.lol.get_width() + 100
+        text_rect.y = math.ceil(screen.get_height() / 35 + 237)
+        
+
+        for loop in range (4) :
+
+            text = font.render(variable[counter][2], 1, (255,255,255))
+            screen.blit(text, text_rect)
+            text_rect.y += 110           
+            counter += 1
+        
+
+
+
+    

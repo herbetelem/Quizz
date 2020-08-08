@@ -52,8 +52,8 @@ class Variable_load:
         # Print rond coché
         self.round_selected = pygame.image.load('asset/button/round_selected.png')
         self.round_selected_rect = self.round_selected.get_rect()
-        self.round_selected_rect.x = 0
-        self.round_selected_rect.y = 0
+        self.round_rect.x = self.lol.get_width()
+        self.round_rect.y = math.ceil(screen.get_height() / 35 + 256)
 
         # Print rectangle pour passer a la question suivante 
         self.next = pygame.image.load('asset/button/next.png')
