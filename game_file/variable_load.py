@@ -82,5 +82,5 @@ class Variable_load:
         # Print la case validation de la réponse
         self.validation = pygame.image.load('asset/button/validation.png')
         self.validation_rect = self.validation.get_rect()
-        self.validation_rect.x = screen.get_width() - 300
-        self.validation_rect.y = screen.get_height() - 140
+        self.validation_rect.x = screen.get_width() - 290
+        self.validation_rect.y = screen.get_height() - 150

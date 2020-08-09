@@ -107,6 +107,14 @@ while running :
                 game.round1 = False
                 game.round2 = False
                 game.round3 = False
+            # Changer la question réponse
+            if variable_load.next_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False and game.round_check == True :
+                game.question += 1
+                game.round4 = False
+                game.round1 = False
+                game.round2 = False
+                game.round3 = False
+                game.round_check = False
 
 
     # LB afficher un texte

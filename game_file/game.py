@@ -20,10 +20,15 @@ class Game:
         self.variable_load = Variable_load(screen)
         # création de la class SQL
         self.sql_request = SQL_request()
+        # Savoir sur quel rond l'utilisateur a cliqué
         self.round1 = False
         self.round2 = False
         self.round3 = False
         self.round4 = False
+        # Choisir la question
+        self.question = 1
+        # Validation pour savoir si on peut passer a la question suivante
+        self.round_check = False
 
     # update l'écran
     def update(self, screen):
@@ -58,14 +63,18 @@ class Game:
             screen.blit(self.variable_load.round4, self.variable_load.round4_rect)
         else :
             screen.blit(self.variable_load.round_selected, self.variable_load.round4_rect)
+            
+        # Pour changer la question
+        if self.round1 == True or self.round2 == True or self.round3 == True or self.round4 == True:
+            self.round_check = True
         
         self.update_question(screen)
 
     def update_question(self, screen):
 
         # importer la question 
-        question = 1
-        self.sql_request.read_question(question)
+        
+        self.sql_request.read_question(self.question)
         variable = self.sql_request.question_tmp[1]
         # print la question
         font = pygame.font.Font(None, 35)
@@ -78,7 +87,7 @@ class Game:
 
         # importer les questions 
         counter = 0
-        self.sql_request.read_answer(question)
+        self.sql_request.read_answer(self.question)
         variable = self.sql_request.anwser_tmp
         text = font.render(variable[counter][2], 1, (255,255,255))
         text_rect.x = self.variable_load.lol.get_width() + 100
@@ -91,6 +100,8 @@ class Game:
             screen.blit(text, text_rect)
             text_rect.y += 110           
             counter += 1
+
+
         
 
         
