@@ -43,17 +43,35 @@ class Variable_load:
         self.block_wrong_rect.x = 0
         self.block_wrong_rect.y = 0
 
-        # Print rond a cocher
-        self.round = pygame.image.load('asset/button/round.png')
-        self.round_rect = self.round.get_rect()
-        self.round_rect.x = self.lol.get_width()
-        self.round_rect.y = math.ceil(screen.get_height() / 35 + 256)
+        # Print rond1 a cocher
+        self.round1 = pygame.image.load('asset/button/round.png')
+        self.round1_rect = self.round1.get_rect()
+        self.round1_rect.x = self.lol.get_width()
+        self.round1_rect.y = math.ceil(screen.get_height() / 35 + 225)
+
+        # Print rond2 a cocher
+        self.round2 = pygame.image.load('asset/button/round.png')
+        self.round2_rect = self.round2.get_rect()
+        self.round2_rect.x = self.lol.get_width()
+        self.round2_rect.y = self.round1_rect.y + 110
+
+        # Print rond3 a cocher
+        self.round3 = pygame.image.load('asset/button/round.png')
+        self.round3_rect = self.round3.get_rect()
+        self.round3_rect.x = self.lol.get_width()
+        self.round3_rect.y = self.round2_rect.y + 110
+
+        # Print rond4 a cocher
+        self.round4 = pygame.image.load('asset/button/round.png')
+        self.round4_rect = self.round4.get_rect()
+        self.round4_rect.x = self.lol.get_width()
+        self.round4_rect.y = self.round3_rect.y + 110
 
         # Print rond coché
         self.round_selected = pygame.image.load('asset/button/round_selected.png')
         self.round_selected_rect = self.round_selected.get_rect()
-        self.round_rect.x = self.lol.get_width()
-        self.round_rect.y = math.ceil(screen.get_height() / 35 + 256)
+        self.round_selected_rect.x = 0
+        self.round_selected_rect.y = 0
 
         # Print rectangle pour passer a la question suivante 
         self.next = pygame.image.load('asset/button/next.png')
@@ -64,5 +82,5 @@ class Variable_load:
         # Print la case validation de la réponse
         self.validation = pygame.image.load('asset/button/validation.png')
         self.validation_rect = self.validation.get_rect()
-        self.validation_rect.x = screen.get_width() - 300
-        self.validation_rect.y = screen.get_height() - 140
+        self.validation_rect.x = screen.get_width() - 290
+        self.validation_rect.y = screen.get_height() - 150
