@@ -14,7 +14,8 @@ class Game:
         # * definir si le jeu a commencer ou pas
         self.is_playing = False
         # * 
-        self.background = pygame.image.load('asset/bg/bg_5.jpg')
+        self.list_background = ['asset/bg/bg_quizz.png', 'asset/bg/bg_1.jpg', 'asset/bg/bg_2.jpg', 'asset/bg/bg_3.jpg', 'asset/bg/bg_4.jpg', 'asset/bg/bg_5.jpg','asset/bg/bg_5.jpg']
+        self.background = pygame.image.load(self.list_background[0])
         self.background = pygame.transform.scale(self.background, (1080, 720))
         # création de la class variable
         self.variable_load = Variable_load(screen)
@@ -26,12 +27,16 @@ class Game:
         self.round3 = False
         self.round4 = False
         # Choisir la question
-        self.question = 1
+        self.question = 5
         # Validation pour savoir si on peut passer a la question suivante
         self.round_check = False
 
     # update l'écran
     def update(self, screen):
+        
+        # * afficher le background de la question
+        self.background = pygame.image.load(self.list_background[self.question])
+        self.background = pygame.transform.scale(self.background, (1080, 720))
 
         screen.blit(self.variable_load.lol, self.variable_load.lol_rect)
         screen.blit(self.variable_load.title, self.variable_load.title_rect)
