@@ -115,17 +115,19 @@ class Game:
             counter += 1
 
 
+    # * fonction qui verifie la reponse du joueur
     def check_answer(self):
+        # * je check que la reponse et celle du joueur soit identiques
         if self.choice_player == self.correct_answer:
             self.result_turn = True
-            # self.sound_win.play()
+            # * je lance la musique
             pygame.mixer.init()
             pygame.mixer.music.load("asset/music/true.ogg")
             pygame.mixer.music.play()
             pygame.mixer.music.set_volume(0.01)
         else :
             self.result_turn = False
-            # self.sound_loose.play()
+            # * je lance la musique
             pygame.mixer.init()
             pygame.mixer.music.load("asset/music/wrong.ogg")
             pygame.mixer.music.play()
