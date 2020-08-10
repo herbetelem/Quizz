@@ -130,9 +130,3 @@ class Game:
             pygame.mixer.music.load("asset/music/wrong.ogg")
             pygame.mixer.music.play()
             pygame.mixer.music.set_volume(0.01)
-
-
-
-
-
-
