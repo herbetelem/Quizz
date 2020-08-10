@@ -90,28 +90,16 @@ while running :
             if game.is_playing and score.score_look == False:
                 # Changer l'image du round si il est coché
                 if variable_load.round1_rect.collidepoint(event.pos):
-                    game.round1 = True
-                    game.round2 = False
-                    game.round3 = False
-                    game.round4 = False
+                    game.change_round(1)
                     game.choice_player = 1
                 if variable_load.round2_rect.collidepoint(event.pos):
-                    game.round2 = True
-                    game.round1 = False
-                    game.round3 = False
-                    game.round4 = False
+                    game.change_round(2)
                     game.choice_player = 2
                 if variable_load.round3_rect.collidepoint(event.pos):
-                    game.round3 = True
-                    game.round1 = False
-                    game.round2 = False
-                    game.round4 = False
+                    game.change_round(3)
                     game.choice_player = 3
                 if variable_load.round4_rect.collidepoint(event.pos):
-                    game.round4 = True
-                    game.round1 = False
-                    game.round2 = False
-                    game.round3 = False
+                    game.change_round(4)
                     game.choice_player = 4
                 # Changer la question réponse #* SI le joeur a selectionner un rond et l'a valider
                 if variable_load.next_rect.collidepoint(event.pos)and game.round_check and game.player_validated:

@@ -35,6 +35,8 @@ class Game:
         # * choix du joueur
         self.choice_player = 0
         self.player_validated = False
+        self.list_bloc = []
+        self.list_round = [self.round1, self.round2, self.round3, self.round4]
         # * son
         self.sound_win = pygame.mixer.Sound("asset/music/true.ogg")
         self.sound_loose = pygame.mixer.Sound("asset/music/wrong.ogg")
@@ -46,58 +48,46 @@ class Game:
 
     # update l'écran
     def update(self, screen):
-        # * si le joueur est choisi
-        if self.player:
-            # * afficher le background de la question
-            self.background = pygame.image.load(self.list_background[self.question])
-            self.background = pygame.transform.scale(self.background, (1080, 720))
+        
+        # * afficher le background de la question
+        self.background = pygame.image.load(self.list_background[self.question])
+        self.background = pygame.transform.scale(self.background, (1080, 720))
 
-            # afficher le logo, le bloc de la question et les bloc reponse et next
-            screen.blit(self.variable_load.lol, self.variable_load.lol_rect)
-            screen.blit(self.variable_load.title, self.variable_load.title_rect)
-            if self.choice_player > 0 and self.player_validated == False:
-                screen.blit(self.variable_load.validation, self.variable_load.validation_rect)
-            if self.player_validated:
-                screen.blit(self.variable_load.next, self.variable_load.next_rect)
-            
-            # * afficher les bloc
-            for bloc in self.list_bloc:
-                screen.blit(bloc.image, bloc.rect)
+        # afficher le logo, le bloc de la question et les bloc reponse et next
+        screen.blit(self.variable_load.lol, self.variable_load.lol_rect)
+        screen.blit(self.variable_load.title, self.variable_load.title_rect)
+        if self.choice_player > 0 and self.player_validated == False:
+            screen.blit(self.variable_load.validation, self.variable_load.validation_rect)
+        if self.player_validated:
+            screen.blit(self.variable_load.next, self.variable_load.next_rect)
+        
+        # * afficher les bloc
+        for bloc in self.list_bloc:
+            screen.blit(bloc.image, bloc.rect)
 
-            #print les block réponse 4 fois 
-            # self.variable_load.block_rect.y = math.ceil(screen.get_height() / 35 + 215)
-            # for loop in range (4) :
-            #     screen.blit(self.variable_load.block, self.variable_load.block_rect)
-            #     self.variable_load.block_rect.y += 110
+        #print les block réponse 4 fois 
+        # self.variable_load.block_rect.y = math.ceil(screen.get_height() / 35 + 215)
+        # for loop in range (4) :
+        #     screen.blit(self.variable_load.block, self.variable_load.block_rect)
+        #     self.variable_load.block_rect.y += 110
 
-            #print les ronds 4 fois
-            if self.round1 == False :
+        #print les ronds 4 fois
+        self.variable_load.round1_rect.y = math.ceil(screen.get_height() / 35 + 225)
+        for round in range (4) :
+
+            if self.list_round[round] == False :
                 screen.blit(self.variable_load.round1, self.variable_load.round1_rect)
             else :
                 screen.blit(self.variable_load.round_selected, self.variable_load.round1_rect)
+            self.variable_load.round1_rect.y += 110
 
-            if self.round2 == False :
-                screen.blit(self.variable_load.round2, self.variable_load.round2_rect)
-            else :
-                screen.blit(self.variable_load.round_selected, self.variable_load.round2_rect)
 
-            if self.round3 == False :
-                screen.blit(self.variable_load.round3, self.variable_load.round3_rect)
-            else :
-                screen.blit(self.variable_load.round_selected, self.variable_load.round3_rect)
 
-            if self.round4 == False :
-                screen.blit(self.variable_load.round4, self.variable_load.round4_rect)
-            else :
-                screen.blit(self.variable_load.round_selected, self.variable_load.round4_rect)
-                
-            # Pour changer la question
-            if self.round1 == True or self.round2 == True or self.round3 == True or self.round4 == True:
-                self.round_check = True
-            
-            self.update_question(screen)
-        else:
-            self.champ_select(screen)
+        # Pour changer la question
+        if self.round1 == True or self.round2 == True or self.round3 == True or self.round4 == True:
+            self.round_check = True
+        
+        self.update_question(screen)
 
     def update_question(self, screen):
 
@@ -133,7 +123,6 @@ class Game:
     def create_bloc(self, screen):
         y = math.ceil(screen.get_height() / 35 + 215)
         x = self.variable_load.lol.get_width() + 50
-        self.list_bloc = []
         for bloc in range (4) :
             bloc = Model_button(x, y)
             self.list_bloc.append(bloc)
@@ -164,7 +153,15 @@ class Game:
                 self.list_bloc[index_bloc].image = pygame.image.load('asset/button/block_right.png')
             else:
                 self.list_bloc[index_bloc].image = pygame.image.load('asset/button/block_wrong.png')
+
+    def change_round(self, index):
         
+        for round in range(4):
+            if round == index - 1 :
+                self.list_round[round] = True 
+            else :
+                self.list_round[round] = False
+       
     # * lancer la musique et gerer le volume
     def launch_music(self, music_path):
         pygame.mixer.init()
