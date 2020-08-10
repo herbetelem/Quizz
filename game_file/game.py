@@ -30,6 +30,8 @@ class Game:
         self.question = 5
         # Validation pour savoir si on peut passer a la question suivante
         self.round_check = False
+        # * choix du joueur
+        self.choice_player = 0
 
     # update l'écran
     def update(self, screen):
@@ -38,6 +40,7 @@ class Game:
         self.background = pygame.image.load(self.list_background[self.question])
         self.background = pygame.transform.scale(self.background, (1080, 720))
 
+        # ???
         screen.blit(self.variable_load.lol, self.variable_load.lol_rect)
         screen.blit(self.variable_load.title, self.variable_load.title_rect)
         screen.blit(self.variable_load.validation, self.variable_load.validation_rect)
@@ -78,9 +81,9 @@ class Game:
     def update_question(self, screen):
 
         # importer la question 
-        
         self.sql_request.read_question(self.question)
         variable = self.sql_request.question_tmp[1]
+        self.correct_answer = self.sql_request.question_tmp[2]
         # print la question
         font = pygame.font.Font(None, 35)
         text = font.render(variable, 1, (255,255,255))
@@ -107,10 +110,14 @@ class Game:
             counter += 1
 
 
-        
+    def check_answer(self):
+        if self.choice_player == self.correct_answer:
+            self.result_turn = True
+        else : 
+            self.result_turn = False
 
-        
 
 
 
-    
+
+

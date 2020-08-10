@@ -86,39 +86,46 @@ while running :
             if score.home_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == True:
                 score.score_look = False
     
-            # Changer l'image du round si il est coché
-            if variable_load.round1_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False:
-                game.round1 = True
-                game.round2 = False
-                game.round3 = False
-                game.round4 = False
-            if variable_load.round2_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False:
-                game.round2 = True
-                game.round1 = False
-                game.round3 = False
-                game.round4 = False
-            if variable_load.round3_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False:
-                game.round3 = True
-                game.round1 = False
-                game.round2 = False
-                game.round4 = False
-            if variable_load.round4_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False:
-                game.round4 = True
-                game.round1 = False
-                game.round2 = False
-                game.round3 = False
-            # Changer la question réponse
-            if variable_load.next_rect.collidepoint(event.pos) and game.is_playing == True and score.score_look == False and game.round_check == True :
-                game.question += 1
-                game.round4 = False
-                game.round1 = False
-                game.round2 = False
-                game.round3 = False
-                game.round_check = False
+            # * si une partie est lancé
+            if game.is_playing and score.score_look == False:
+                # Changer l'image du round si il est coché
+                if variable_load.round1_rect.collidepoint(event.pos):
+                    game.round1 = True
+                    game.round2 = False
+                    game.round3 = False
+                    game.round4 = False
+                    game.choice_player = 1
+                if variable_load.round2_rect.collidepoint(event.pos):
+                    game.round2 = True
+                    game.round1 = False
+                    game.round3 = False
+                    game.round4 = False
+                    game.choice_player = 2
+                if variable_load.round3_rect.collidepoint(event.pos):
+                    game.round3 = True
+                    game.round1 = False
+                    game.round2 = False
+                    game.round4 = False
+                    game.choice_player = 3
+                if variable_load.round4_rect.collidepoint(event.pos):
+                    game.round4 = True
+                    game.round1 = False
+                    game.round2 = False
+                    game.round3 = False
+                    game.choice_player = 4
+                # Changer la question réponse
+                if variable_load.next_rect.collidepoint(event.pos)and game.round_check == True :
+                    game.question += 1
+                    game.choice_player = 0
+                    game.round_check = False
+                    game.round4 = False
+                    game.round1 = False
+                    game.round2 = False
+                    game.round3 = False
+                # * verifier la reponse du joueur
+                if variable_load.validation_rect.collidepoint(event.pos):
+                    game.check_answer()
 
-
-    # LB afficher un texte
-    # screen.blit(text,(500, 60))
 
     # * HH update le screen
     pygame.display.flip()
