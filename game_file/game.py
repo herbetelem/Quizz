@@ -23,6 +23,11 @@ class Game:
         self.variable_load = Variable_load(screen)
         # création de la class SQL
         self.sql_request = SQL_request()
+        # Savoir sur quel rond l'utilisateur a cliqué
+        self.round1 = False
+        self.round2 = False
+        self.round3 = False
+        self.round4 = False
         # Choisir la question
         self.question = 1
         # Validation pour savoir si on peut passer a la question suivante
@@ -31,12 +36,7 @@ class Game:
         self.choice_player = 0
         self.player_validated = False
         # définir le nombre de bonne réponse du joueur
-        self.round1 = False
-        self.round2 = False
-        self.round3 = False
-        self.round4 = False
         self.score = 0
-        self.player_name = "Alain"
         self.list_bloc = []
         self.list_round = [self.round1, self.round2, self.round3, self.round4]
         # * son
@@ -45,7 +45,7 @@ class Game:
         
         # * appeller la fonction pour creer les blocs
         self.create_bloc(screen)
-        self.player = True
+        self.player = False
 
 
     # update l'écran
@@ -83,6 +83,8 @@ class Game:
                 else :
                     screen.blit(self.variable_load.round_selected, self.variable_load.round1_rect)
                 self.variable_load.round1_rect.y += 110
+
+
 
             # Pour changer la question
             if self.list_round[0] == True or self.list_round[1] == True or self.list_round[2] == True or self.list_round[3] == True:
@@ -177,19 +179,18 @@ class Game:
         self.question += 1
         self.choice_player = 0
         self.round_check = False
-        for round in range((len(self.list_round)) - 1) :
-            self.list_round[round] = False
-        print(self.list_round)
+        for round in self.list_round :
+            round = False
         self.player_validated = False
         for bloc in self.list_bloc:
             bloc.image = pygame.image.load('asset/button/block.png')
 
     def champ_select(self, screen):
-            self.background = pygame.image.load('asset/bg/Fichier 1.png')
+            self.background = pygame.image.load('asset/bg/champ_select.png').convert()
             self.background = pygame.transform.scale(self.background, (1080, 720))
 
-
-
+    def score_player (self):
+        
 
 
 
