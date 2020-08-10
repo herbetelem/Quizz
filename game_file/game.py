@@ -32,6 +32,10 @@ class Game:
         self.round_check = False
         # * choix du joueur
         self.choice_player = 0
+        # * son
+        self.sound_win = pygame.mixer.Sound("asset/music/true.ogg")
+        self.sound_loose = pygame.mixer.Sound("asset/music/wrong.ogg")
+
 
     # update l'écran
     def update(self, screen):
@@ -113,8 +117,10 @@ class Game:
     def check_answer(self):
         if self.choice_player == self.correct_answer:
             self.result_turn = True
-        else : 
+            self.sound_win.play()
+        else :
             self.result_turn = False
+            self.sound_loose.play()
 
 
 
