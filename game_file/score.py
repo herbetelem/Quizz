@@ -3,13 +3,16 @@
 # * import des libs
 import pygame
 from game_file.sql_function import SQL_request
+from game_file.game import Game
 
 # créer la classe game
 class Score:
     
-    def __init__(self):
+    def __init__(self, screen):
         # * definir si le jeu a commencer ou pas
         self.score_look = False
+        # Vérifier si le joueur et déja dans le tableau des scores
+        self.validation_user = ""
         # * definir le background
         self.background = pygame.image.load('asset/bg/bg_score.jpg')
         self.background = pygame.transform.scale(self.background, (1080, 720))
@@ -17,6 +20,8 @@ class Score:
         self.logo = pygame.image.load('asset/button/LoL.png')
         # * definir l'objet sql
         self.sql_request = SQL_request()
+        self.game = Game(screen)
+        
         # ! Laura m'a fait enlever 10 lignes !
         # * definir l'objet retour au menu
         self.home = pygame.image.load('asset/home.png')
@@ -43,3 +48,15 @@ class Score:
             screen.blit(text,(500, y_temp))
             y_temp += 70
         screen.blit(self.home, self.home_rect)
+
+    # Envoyer les scores a la base de donnée 
+    def score_player(self):
+        self.sql_request.verification_user(self.game.player_name)
+        self.validation_user = self.sql_request.user
+        # Si le jouer est deja dans la base de données
+        if self.validation_user == True :
+            self.sql_request.update_user(self.game.player_name, self.game.score)
+
+        # Si le joueur n'est pas dans dans la base de données
+        else :
+            self.sql_request.create_score(self.game.player_name, self.game.score)

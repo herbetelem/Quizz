@@ -49,7 +49,7 @@ pygame.display.set_icon(icon_32x32)
 
 # CREATION DES VAR NESCESSAIRE
 game = Game(screen)
-score = Score()
+score = Score(screen)
 variable_load = Variable_load(screen)
 running = True
 
@@ -104,6 +104,7 @@ while running :
                 # Changer la question réponse #* SI le joeur a selectionner un rond et l'a valider
                 if variable_load.next_rect.collidepoint(event.pos)and game.round_check and game.player_validated:
                     if game.question == 5:
+                        # score.score_player()
                         game.question = 1
                         score.score_look = True
                         game.is_playing = False
@@ -117,4 +118,3 @@ while running :
 
     # * HH update le screen
     pygame.display.flip()
-    
