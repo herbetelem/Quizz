@@ -35,6 +35,8 @@ class Game:
         # * choix du joueur
         self.choice_player = 0
         self.player_validated = False
+        # définir le nombre de bonne réponse du joueur
+        self.score = 0
         self.list_bloc = []
         self.list_round = [self.round1, self.round2, self.round3, self.round4]
         # * son
@@ -85,7 +87,7 @@ class Game:
 
 
             # Pour changer la question
-            if self.round1 == True or self.round2 == True or self.round3 == True or self.round4 == True:
+            if self.list_round[0] == True or self.list_round[1] == True or self.list_round[2] == True or self.list_round[3] == True:
                 self.round_check = True
             
             self.update_question(screen)
@@ -141,6 +143,7 @@ class Game:
             self.result_turn = True
             # * je lance la musique
             self.launch_music("asset/music/true.ogg")
+            self.score += 1
         else :
             self.result_turn = False
             # * je lance la musique
@@ -176,10 +179,8 @@ class Game:
         self.question += 1
         self.choice_player = 0
         self.round_check = False
-        self.round4 = False
-        self.round1 = False
-        self.round2 = False
-        self.round3 = False
+        for round in self.list_round :
+            round = False
         self.player_validated = False
         for bloc in self.list_bloc:
             bloc.image = pygame.image.load('asset/button/block.png')
@@ -187,6 +188,11 @@ class Game:
     def champ_select(self, screen):
             self.background = pygame.image.load('asset/bg/champ_select.png').convert()
             self.background = pygame.transform.scale(self.background, (1080, 720))
+
+    def score_player (self):
+        
+
+
 
 
 
