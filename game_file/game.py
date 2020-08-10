@@ -185,7 +185,7 @@ class Game:
             bloc.image = pygame.image.load('asset/button/block.png')
 
     def champ_select(self, screen):
-            self.background = pygame.image.load('asset/bg/champ_select3.png')
+            self.background = pygame.image.load('asset/bg/champ_select.png').convert()
             self.background = pygame.transform.scale(self.background, (1080, 720))
 
 
