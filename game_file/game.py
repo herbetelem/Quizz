@@ -6,6 +6,7 @@ import math
 from game_file.variable_load import Variable_load
 from game_file.sql_function import SQL_request
 
+
 # créer la classe game
 class Game:
     
@@ -117,10 +118,18 @@ class Game:
     def check_answer(self):
         if self.choice_player == self.correct_answer:
             self.result_turn = True
-            self.sound_win.play()
+            # self.sound_win.play()
+            pygame.mixer.init()
+            pygame.mixer.music.load("asset/music/true.ogg")
+            pygame.mixer.music.play()
+            pygame.mixer.music.set_volume(0.01)
         else :
             self.result_turn = False
-            self.sound_loose.play()
+            # self.sound_loose.play()
+            pygame.mixer.init()
+            pygame.mixer.music.load("asset/music/wrong.ogg")
+            pygame.mixer.music.play()
+            pygame.mixer.music.set_volume(0.01)
 
 
 
