@@ -35,6 +35,8 @@ class Game:
         # * choix du joueur
         self.choice_player = 0
         self.player_validated = False
+        self.list_bloc = []
+        self.list_round = [self.round1, self.round2, self.round3, self.round4]
         # * son
         self.sound_win = pygame.mixer.Sound("asset/music/true.ogg")
         self.sound_loose = pygame.mixer.Sound("asset/music/wrong.ogg")
@@ -69,26 +71,17 @@ class Game:
         #     self.variable_load.block_rect.y += 110
 
         #print les ronds 4 fois
-        if self.round1 == False :
-            screen.blit(self.variable_load.round1, self.variable_load.round1_rect)
-        else :
-            screen.blit(self.variable_load.round_selected, self.variable_load.round1_rect)
+        self.variable_load.round1_rect.y = math.ceil(screen.get_height() / 35 + 225)
+        for round in range (4) :
 
-        if self.round2 == False :
-            screen.blit(self.variable_load.round2, self.variable_load.round2_rect)
-        else :
-            screen.blit(self.variable_load.round_selected, self.variable_load.round2_rect)
+            if self.list_round[round] == False :
+                screen.blit(self.variable_load.round1, self.variable_load.round1_rect)
+            else :
+                screen.blit(self.variable_load.round_selected, self.variable_load.round1_rect)
+            self.variable_load.round1_rect.y += 110
 
-        if self.round3 == False :
-            screen.blit(self.variable_load.round3, self.variable_load.round3_rect)
-        else :
-            screen.blit(self.variable_load.round_selected, self.variable_load.round3_rect)
 
-        if self.round4 == False :
-            screen.blit(self.variable_load.round4, self.variable_load.round4_rect)
-        else :
-            screen.blit(self.variable_load.round_selected, self.variable_load.round4_rect)
-            
+
         # Pour changer la question
         if self.round1 == True or self.round2 == True or self.round3 == True or self.round4 == True:
             self.round_check = True
@@ -129,7 +122,6 @@ class Game:
     def create_bloc(self, screen):
         y = math.ceil(screen.get_height() / 35 + 215)
         x = self.variable_load.lol.get_width() + 50
-        self.list_bloc = []
         for bloc in range (4) :
             bloc = Model_button(x, y)
             self.list_bloc.append(bloc)
@@ -160,7 +152,15 @@ class Game:
                 self.list_bloc[index_bloc].image = pygame.image.load('asset/button/block_right.png')
             else:
                 self.list_bloc[index_bloc].image = pygame.image.load('asset/button/block_wrong.png')
+
+    def change_round(self, index):
         
+        for round in range(4):
+            if round == index - 1 :
+                self.list_round[round] = True 
+            else :
+                self.list_round[round] = False
+       
     # * lancer la musique et gerer le volume
     def launch_music(self, music_path):
         pygame.mixer.init()
