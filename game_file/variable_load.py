@@ -76,8 +76,8 @@ class Variable_load:
         # Print rectangle pour passer a la question suivante 
         self.next = pygame.image.load('asset/button/next.png')
         self.next_rect = self.next.get_rect()
-        self.next_rect.x = 0
-        self.next_rect.y = 0
+        self.next_rect.x = screen.get_width() - 290
+        self.next_rect.y = screen.get_height() - 150
 
         # Print la case validation de la réponse
         self.validation = pygame.image.load('asset/button/validation.png')

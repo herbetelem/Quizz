@@ -113,8 +113,8 @@ while running :
                     game.round2 = False
                     game.round3 = False
                     game.choice_player = 4
-                # Changer la question réponse
-                if variable_load.next_rect.collidepoint(event.pos)and game.round_check == True :
+                # Changer la question réponse #* SI le joeur a selectionner un rond et l'a valider
+                if variable_load.next_rect.collidepoint(event.pos)and game.round_check and game.player_validated:
                     game.question += 1
                     game.choice_player = 0
                     game.round_check = False
@@ -123,7 +123,7 @@ while running :
                     game.round2 = False
                     game.round3 = False
                 # * verifier la reponse du joueur
-                if variable_load.validation_rect.collidepoint(event.pos):
+                if variable_load.validation_rect.collidepoint(event.pos) and game.round_check and game.player_validated == False:
                     game.check_answer()
 
 
