@@ -152,6 +152,7 @@ class Game:
         self.change_bloc(self.correct_answer)
             
         
+    # * changer l'attribut image des bloc en fonction des bonnes reponse
     def change_bloc(self, index):
         index -= 1
         for index_bloc in range(4):
@@ -160,11 +161,24 @@ class Game:
             else:
                 self.list_bloc[index_bloc].image = pygame.image.load('asset/button/block_wrong.png')
         
+    # * lancer la musique et gerer le volume
     def launch_music(self, music_path):
         pygame.mixer.init()
         pygame.mixer.music.load(music_path)
         pygame.mixer.music.play()
         pygame.mixer.music.set_volume(0.05)
+        
+    def next_question(self):
+        self.question += 1
+        self.choice_player = 0
+        self.round_check = False
+        self.round4 = False
+        self.round1 = False
+        self.round2 = False
+        self.round3 = False
+        self.player_validated = False
+        for bloc in self.list_bloc:
+            bloc.image = pygame.image.load('asset/button/block.png')
 
 
 
