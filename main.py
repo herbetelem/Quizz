@@ -129,4 +129,3 @@ while running :
 
     # * HH update le screen
     pygame.display.flip()
-
