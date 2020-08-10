@@ -5,7 +5,6 @@ import pygame
 import math
 from game_file.variable_load import Variable_load
 from game_file.sql_function import SQL_request
-from game_file.model_button import Model_button
 
 
 # créer la classe game
@@ -29,18 +28,14 @@ class Game:
         self.round3 = False
         self.round4 = False
         # Choisir la question
-        self.question = 1
+        self.question = 5
         # Validation pour savoir si on peut passer a la question suivante
         self.round_check = False
         # * choix du joueur
         self.choice_player = 0
-        self.player_validated = False
         # * son
         self.sound_win = pygame.mixer.Sound("asset/music/true.ogg")
         self.sound_loose = pygame.mixer.Sound("asset/music/wrong.ogg")
-        
-        # * appeller la fonction pour creer les blocs
-        self.create_bloc(screen)
 
 
     # update l'écran
@@ -50,23 +45,16 @@ class Game:
         self.background = pygame.image.load(self.list_background[self.question])
         self.background = pygame.transform.scale(self.background, (1080, 720))
 
-        # afficher le logo, le bloc de la question et les bloc reponse et next
+        # ???
         screen.blit(self.variable_load.lol, self.variable_load.lol_rect)
         screen.blit(self.variable_load.title, self.variable_load.title_rect)
-        if self.choice_player > 0 and self.player_validated == False:
-            screen.blit(self.variable_load.validation, self.variable_load.validation_rect)
-        if self.player_validated:
-            screen.blit(self.variable_load.next, self.variable_load.next_rect)
+        screen.blit(self.variable_load.validation, self.variable_load.validation_rect)
         
-        # * afficher les bloc
-        for bloc in self.list_bloc:
-            screen.blit(bloc.image, bloc.rect)
-
         #print les block réponse 4 fois 
-        # self.variable_load.block_rect.y = math.ceil(screen.get_height() / 35 + 215)
-        # for loop in range (4) :
-        #     screen.blit(self.variable_load.block, self.variable_load.block_rect)
-        #     self.variable_load.block_rect.y += 110
+        self.variable_load.block_rect.y = math.ceil(screen.get_height() / 35 + 215)
+        for loop in range (4) :
+            screen.blit(self.variable_load.block, self.variable_load.block_rect)
+            self.variable_load.block_rect.y += 110 
 
         #print les ronds 4 fois
         if self.round1 == False :
@@ -118,33 +106,23 @@ class Game:
         text_rect.x = self.variable_load.lol.get_width() + 100
         text_rect.y = math.ceil(screen.get_height() / 35 + 237)
         
-        # afficher les texte des question
-        for text in range (4) :
+
+        for loop in range (4) :
+
             text = font.render(variable[counter][2], 1, (255,255,255))
             screen.blit(text, text_rect)
             text_rect.y += 110           
             counter += 1
 
 
-    def create_bloc(self, screen):
-        y = math.ceil(screen.get_height() / 35 + 215)
-        x = self.variable_load.lol.get_width() + 50
-        self.list_bloc = []
-        for bloc in range (4) :
-            bloc = Model_button(x, y)
-            self.list_bloc.append(bloc)
-            y += 110
-
-
-    # * fonction qui verifie la reponse du joueur
     def check_answer(self):
-        # * je dit que le joueur a bien entrer une reponse
-        self.player_validated = True
-        # * je check que la reponse et celle du joueur soit identiques
         if self.choice_player == self.correct_answer:
             self.result_turn = True
-            # * je lance la musique
-            self.launch_music("asset/music/true.ogg")
+            # self.sound_win.play()
+            pygame.mixer.init()
+            pygame.mixer.music.load("asset/music/true.ogg")
+            pygame.mixer.music.play()
+            pygame.mixer.music.set_volume(0.01)
         else :
             self.result_turn = False
             # * je lance la musique
