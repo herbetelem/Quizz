@@ -6,6 +6,7 @@ import math
 from game_file.variable_load import Variable_load
 from game_file.sql_function import SQL_request
 from game_file.model_button import Model_button
+from game_file.block_select import Block_select
 
 
 # créer la classe game
@@ -39,12 +40,16 @@ class Game:
         self.score = 0
         self.list_bloc = []
         self.list_round = [self.round1, self.round2, self.round3, self.round4]
+        self.list_champ = []
+        self.list_champ_name = ["hadrien", "melanie", "alexandre", "aurelia", "guillaume", "alain", "javier", "alex", "laura", "wilfried"]
+        self.list_champ_rect = [[18, 138], [18, 251], [18, 364], [18, 477], [18, 590], [856, 138], [856, 251], [856, 364], [856, 477], [856, 590]]
         # * son
         self.sound_win = pygame.mixer.Sound("asset/music/true.ogg")
         self.sound_loose = pygame.mixer.Sound("asset/music/wrong.ogg")
         
         # * appeller la fonction pour creer les blocs
         self.create_bloc(screen)
+        self.create_champ()
         self.player = False
 
 
@@ -132,7 +137,14 @@ class Game:
             bloc = Model_button(x, y)
             self.list_bloc.append(bloc)
             y += 110
-
+            
+    # * Fonction qui créer les blocks qui permettront de choisir son champ
+    def create_champ(self):
+        for index in range(10):
+            # * Avec cette ligne je créer un carré noir
+            champ = Block_select(self.list_champ_rect[index][0], self.list_champ_rect[index][1])
+            # * et la je le met dans ma liste de carre
+            self.list_champ.append([champ, self.list_champ_name[index]])
 
     # * fonction qui verifie la reponse du joueur
     def check_answer(self):
@@ -186,11 +198,17 @@ class Game:
             bloc.image = pygame.image.load('asset/button/block.png')
 
     def champ_select(self, screen):
-            self.background = pygame.image.load('asset/bg/champ_select.png').convert()
-            self.background = pygame.transform.scale(self.background, (1080, 720))
+        # * pouir chaque element de ma liste de champ, je blit leurs noms
+        for champ in self.list_champ:
+            screen.blit(champ[0].image, champ[0].rect)
+        #* puis je blit le background par dessus
+        self.background = pygame.image.load('asset/bg/champ_select.png').convert()
+        self.background = pygame.transform.scale(self.background, (1080, 720))
+        screen.blit(self.background, (0,0))
+            
 
     def score_player (self):
-        
+        pass
 
 
 

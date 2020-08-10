@@ -113,6 +113,11 @@ while running :
                 # * verifier la reponse du joueur
                 if variable_load.validation_rect.collidepoint(event.pos) and game.round_check and game.player_validated == False:
                     game.check_answer()
+                    
+                # * check le click sur un champ
+                for champ in game.list_champ:
+                    if champ[0].rect.collidepoint(event.pos):
+                        print(champ[1])
 
 
     # * HH update le screen
