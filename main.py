@@ -119,6 +119,7 @@ while running :
                 for champ in game.list_champ:
                     if champ[0].rect.collidepoint(event.pos):
                         print(champ[1])
+                        game.player = True
 
 
     # * HH update le screen
