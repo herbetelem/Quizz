@@ -13,7 +13,7 @@ class SQL_request:
         # * instance du curseur
         self.cursor = self.connection.cursor()
         # Vérifier que le joueur et déjà dans la base de donnée ou non
-        self.validation_user = False
+        self.user = False
 
     def read_question(self, id_question):
         # * je definit quelle id de question je vais chercher
@@ -38,8 +38,8 @@ class SQL_request:
         # * je formate en tuple mes reponses
         self.score_tmp = self.cursor.fetchall()
 
-    def save_score(self, name, score):
-        # creer la sauvegarde des scores 
+    def create_score(self, name, score):
+        # creer la sauvegarde d'un nouveau scores 
         new_user = (self.cursor.lastrowid, name, score)
         # On creer une requete pour un nouveau utilisateur
         self.cursor.execute('INSERT INTO hh_score VALUES(?,?,?)', new_user)
@@ -51,9 +51,9 @@ class SQL_request:
         self.cursor.execute('SELECT * FROM hh_score WHERE name = ?', name_user)
         result = self.cursor.fetchone()
         if result == None :
-            self.validation_user = False
+            self.user = False
         else : 
-            self.validation_user = True
+            self.user = True
 
     def update_user(self, name, score):
         # Mettre a jour les score d'un joueur
