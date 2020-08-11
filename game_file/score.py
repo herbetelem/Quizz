@@ -29,6 +29,10 @@ class Score:
         self.home_rect = self.home.get_rect()
         self.home_rect.x = 65
         self.home_rect.y = 580
+        
+        # * def de nos score et nom
+        self.player_name = ""
+        self.score = 0
 
 
     def update(self, screen):
@@ -51,12 +55,13 @@ class Score:
 
     # Envoyer les scores a la base de donnée 
     def score_player(self):
-        self.sql_request.verification_user((self.game.player_name,))
+        self.sql_request.verification_user((self.player_name,))
         self.validation_user = self.sql_request.user
         # Si le jouer est deja dans la base de données
         if self.validation_user == True :
-            self.sql_request.update_user(self.game.player_name, self.game.score)
+            self.sql_request.update_user(self.player_name, self.score)
 
         # Si le joueur n'est pas dans dans la base de données
         else :
-            self.sql_request.create_score(self.game.player_name, self.game.score) 
+            self.sql_request.create_score(self.player_name, self.score) 
+            
