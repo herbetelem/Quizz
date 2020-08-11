@@ -52,11 +52,21 @@ class Game:
         self.create_champ()
         self.player = False
         self.player_name = "Homer Simpson"
+        
+        # * set le timer
+        self.clock = pygame.time.Clock()
+        # * set la limite de bonus
+        self.timer = 20000
 
 
     # update l'écran
     def update(self, screen):
-        if self.player:
+        if self.player and self.player_name != "Homer Simpson":
+            
+            # * gestion du temps
+            if self.timer > 0:
+                self.timer -= self.clock.tick(60)
+            
             # * afficher le background de la question
             self.background = pygame.image.load(self.list_background[self.question])
             self.background = pygame.transform.scale(self.background, (1080, 720))
@@ -96,9 +106,22 @@ class Game:
                 self.round_check = True
             
             self.update_question(screen)
+            self.update_timer(screen)
         else:
             self.champ_select(screen)
 
+
+    def update_timer(self, screen):
+        self.background_timer = pygame.image.load('asset/button/title.png')
+        self.background_timer = pygame.transform.scale(self.background_timer, (250, 70))
+        font = pygame.font.Font(None, 36)
+        phrase = f"Timer bonus : {round(self.timer / 1000)}"
+        text = font.render(phrase, 1, (255,255,255))
+
+        # * blit le timer
+        screen.blit(self.background_timer, (25, 120))
+        screen.blit(text,(50, 145))
+        
     def update_question(self, screen):
 
         # importer la question 
@@ -155,7 +178,8 @@ class Game:
             self.result_turn = True
             # * je lance la musique
             self.launch_music("asset/music/true.ogg")
-            self.score += 1
+            self.score += 1 * round(self.timer / 1000)
+            print(self.score)
         else :
             self.result_turn = False
             # * je lance la musique
@@ -188,6 +212,7 @@ class Game:
         pygame.mixer.music.set_volume(0.05)
         
     def next_question(self):
+        self.timer = 20000
         self.question += 1
         self.choice_player = 0
         self.round_check = False
@@ -205,9 +230,7 @@ class Game:
         self.background = pygame.image.load('asset/bg/champ_select.png').convert()
         self.background = pygame.transform.scale(self.background, (1080, 720))
         screen.blit(self.background, (0,0))
-            
 
-    
 
 
 
