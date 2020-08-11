@@ -117,9 +117,9 @@ while running :
                     
                 # * check le click sur un champ
                 for champ in game.list_champ:
-                    if champ[0].rect.collidepoint(event.pos):
-                        print(champ[1])
+                    if champ[0].rect.collidepoint(event.pos) and game.player == False:
                         game.player = True
+                        game.player_name = champ[1]
 
 
     # * HH update le screen

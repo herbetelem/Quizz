@@ -51,6 +51,7 @@ class Game:
         self.create_bloc(screen)
         self.create_champ()
         self.player = False
+        self.player_name = "Homer Simpson"
 
 
     # update l'écran
