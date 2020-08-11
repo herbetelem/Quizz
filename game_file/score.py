@@ -60,3 +60,4 @@ class Score:
         # Si le joueur n'est pas dans dans la base de données
         else :
             self.sql_request.create_score(self.game.player_name, self.game.score) 
+            
