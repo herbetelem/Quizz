@@ -56,7 +56,7 @@ class Game:
 
     # update l'écran
     def update(self, screen):
-        if self.player:
+        if self.player and self.player_name != "Homer Simpson":
             # * afficher le background de la question
             self.background = pygame.image.load(self.list_background[self.question])
             self.background = pygame.transform.scale(self.background, (1080, 720))

@@ -80,6 +80,7 @@ while running :
             # * HH verifier que lors du click de la souris, on est bien sur les boutons
             if play_button_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == False:
                 game.is_playing = True
+                game.player = False
 
             if score_button_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == False:
                 score.score_look = True
@@ -110,6 +111,7 @@ while running :
                         game.question = 1
                         game.choice_player = 0
                         game.player = False
+                        game.player_name = "Homer Simpson"
                         game.score = 0
                         score.score_look = True
                         game.is_playing = False
