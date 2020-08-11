@@ -128,6 +128,7 @@ class Game:
         self.sql_request.read_question(self.question)
         variable = self.sql_request.question_tmp[1]
         self.correct_answer = self.sql_request.question_tmp[2]
+        print(len(self.sql_request.question_tmp[1]))
         # print la question
         font = pygame.font.Font(None, 35)
         text = font.render(variable, 1, (255,255,255))
