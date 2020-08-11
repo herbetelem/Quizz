@@ -199,7 +199,7 @@ class Game:
             bloc.image = pygame.image.load('asset/button/block.png')
 
     def champ_select(self, screen):
-        # * pouir chaque element de ma liste de champ, je blit leurs noms
+        # * pour chaque element de ma liste de champ, je blit leurs noms
         for champ in self.list_champ:
             screen.blit(champ[0].image, champ[0].rect)
         #* puis je blit le background par dessus
