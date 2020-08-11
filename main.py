@@ -73,6 +73,7 @@ while running :
         # LB Si l'event généré par l'utilisateur est de quitter
         if event.type == pygame.QUIT :
             running = False
+            game.sql_request.connection.close()
             pygame.quit()
             
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -104,10 +105,18 @@ while running :
                 # Changer la question réponse #* SI le joeur a selectionner un rond et l'a valider
                 if variable_load.next_rect.collidepoint(event.pos)and game.round_check and game.player_validated:
                     if game.question == 5:
+                        score.score = game.score
                         score.score_player()
                         game.question = 1
+                        game.choice_player = 0
+                        game.player = False
+                        game.score = 0
                         score.score_look = True
                         game.is_playing = False
+                        for round in range(4) :
+                            game.list_round[round] = False
+                        for bloc in game.list_bloc:
+                            bloc.image = pygame.image.load('asset/button/block.png')
                     else:
                         game.next_question()
                     
@@ -120,6 +129,7 @@ while running :
                     if champ[0].rect.collidepoint(event.pos) and game.player == False:
                         game.player = True
                         game.player_name = champ[1]
+                        score.player_name = champ[1]
 
 
     # * HH update le screen

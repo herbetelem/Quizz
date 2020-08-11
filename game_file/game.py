@@ -56,7 +56,6 @@ class Game:
 
     # update l'écran
     def update(self, screen):
-        
         if self.player:
             # * afficher le background de la question
             self.background = pygame.image.load(self.list_background[self.question])
@@ -208,11 +207,7 @@ class Game:
         screen.blit(self.background, (0,0))
             
 
-    def score_player (self):
-        pass
-
-
-
+    
 
 
 
