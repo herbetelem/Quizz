@@ -192,8 +192,8 @@ class Game:
         self.question += 1
         self.choice_player = 0
         self.round_check = False
-        for round in self.list_round :
-            round = False
+        for round in range(4) :
+            self.list_round[round] = False
         self.player_validated = False
         for bloc in self.list_bloc:
             bloc.image = pygame.image.load('asset/button/block.png')
