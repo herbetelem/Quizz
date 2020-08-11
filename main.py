@@ -75,7 +75,7 @@ while running :
             running = False
             game.sql_request.connection.close()
             pygame.quit()
-            
+
         elif event.type == pygame.MOUSEBUTTONDOWN:
             # * HH verifier que lors du click de la souris, on est bien sur les boutons
             if play_button_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == False:
@@ -84,7 +84,7 @@ while running :
 
             if score_button_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == False:
                 score.score_look = True
-                
+
             if score.home_rect.collidepoint(event.pos) and game.is_playing == False and score.score_look == True:
                 score.score_look = False
     
