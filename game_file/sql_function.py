@@ -41,7 +41,7 @@ class SQL_request:
     def create_score(self, name, score):
         # creer la sauvegarde d'un nouveau scores 
         new_user = (self.cursor.lastrowid, name, score)
-        # On creer une requete pour un nouveau utilisateur
+        # requete pour un nouveau utilisateur
         self.cursor.execute('INSERT INTO hh_score VALUES(?,?,?)', new_user)
         # envoi du nouveau joueur
         self.connection.commit
