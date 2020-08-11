@@ -83,11 +83,6 @@ class Game:
             for bloc in self.list_bloc:
                 screen.blit(bloc.image, bloc.rect)
 
-            #print les block réponse 4 fois 
-            # self.variable_load.block_rect.y = math.ceil(screen.get_height() / 35 + 215)
-            # for loop in range (4) :
-            #     screen.blit(self.variable_load.block, self.variable_load.block_rect)
-            #     self.variable_load.block_rect.y += 110
 
             #print les ronds 4 fois
             self.variable_load.round1_rect.y = math.ceil(screen.get_height() / 35 + 225)
@@ -127,22 +122,23 @@ class Game:
         # importer la question 
         self.sql_request.read_question(self.question)
         variable = self.sql_request.question_tmp[1]
+        # font = pygame.font.Font(None, 35)
         self.correct_answer = self.sql_request.question_tmp[2]
-        print(len(self.sql_request.question_tmp[1]))
-        # print la question
         font = pygame.font.Font(None, 35)
-        text = font.render(variable, 1, (255,255,255))
-        text_rect = text.get_rect()
-        # Positionner la question
-        text_rect.x = self.variable_load.lol.get_width() + 70
-        text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - 15 )
-        screen.blit(text, text_rect)
+
+        if len(self.sql_request.question_tmp[1]) > 58 :
+            self.print_question(screen, variable[:58], 30 )
+            self.print_question(screen, variable[58:], 0)
+        else :
+            self.print_question(screen, variable, 15)
 
         # importer les questions 
+        
         counter = 0
         self.sql_request.read_answer(self.question)
         variable = self.sql_request.anwser_tmp
         text = font.render(variable[counter][2], 1, (255,255,255))
+        text_rect = text.get_rect()
         text_rect.x = self.variable_load.lol.get_width() + 100
         text_rect.y = math.ceil(screen.get_height() / 35 + 237)
         
@@ -152,6 +148,16 @@ class Game:
             screen.blit(text, text_rect)
             text_rect.y += 110           
             counter += 1
+
+    def print_question(self, screen, variable, y):
+        
+        font = pygame.font.Font(None, 35)
+        text = font.render(variable, 1, (255,255,255))
+        text_rect = text.get_rect()
+        # Positionner la question
+        text_rect.x = self.variable_load.lol.get_width() + 70
+        text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - y )
+        screen.blit(text, text_rect)
 
 
     def create_bloc(self, screen):
@@ -231,6 +237,7 @@ class Game:
         self.background = pygame.image.load('asset/bg/champ_select.png').convert()
         self.background = pygame.transform.scale(self.background, (1080, 720))
         screen.blit(self.background, (0,0))
+
 
 
 
