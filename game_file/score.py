@@ -51,7 +51,7 @@ class Score:
 
     # Envoyer les scores a la base de donnée 
     def score_player(self):
-        self.sql_request.verification_user(self.game.player_name)
+        self.sql_request.verification_user((self.game.player_name,))
         self.validation_user = self.sql_request.user
         # Si le jouer est deja dans la base de données
         if self.validation_user == True :
