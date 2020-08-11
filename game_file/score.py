@@ -44,7 +44,7 @@ class Score:
         nb_vainqueur = len(self.sql_request.score_tmp)
         y_temp = 25
         for i in range(nb_vainqueur):
-            phrase = f"{self.sql_request.score_tmp[i][1]} a obtenu le score de {self.sql_request.score_tmp[i][2]}/5"
+            phrase = f"{self.sql_request.score_tmp[i][1]} a obtenu le score de {self.sql_request.score_tmp[i][2]}"
             text = font.render(phrase, 1, (255,255,255))
             block = pygame.image.load('asset/button/block.png')
             block = pygame.transform.scale(block, (500, 50))
