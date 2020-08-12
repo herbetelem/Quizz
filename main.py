@@ -104,7 +104,8 @@ while running :
                     game.choice_player = 4
                 # Changer la question réponse #* SI le joeur a selectionner un rond et l'a valider
                 if variable_load.next_rect.collidepoint(event.pos)and game.round_check and game.player_validated:
-                    if game.question == 5:
+                    print(game.sql_request.nb_question)
+                    if game.question == game.sql_request.nb_question[0]:
                         score.score = game.score
                         score.score_player()
                         game.question = 1

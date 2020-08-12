@@ -14,7 +14,19 @@ class SQL_request:
         # self.cursor = self.connection.cursor()
         # Vérifier que le joueur et déjà dans la base de donnée ou non
         self.user = False
+        self.cout_question()
+        print(self.nb_question)
+        
 
+    def cout_question(self):
+        self.connection = sqlite3.connect("quizz.db")
+        self.cursor = self.connection.cursor()
+        # * je créer la requete
+        self.cursor.execute('SELECT COUNT(*) FROM hh_quizz')
+        # * je formate en tuple ma reponse
+        self.nb_question = self.cursor.fetchone()
+        self.connection.close()
+        
     def read_question(self, id_question):
         self.connection = sqlite3.connect("quizz.db")
         self.cursor = self.connection.cursor()
