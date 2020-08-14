@@ -1,6 +1,7 @@
 # coding : utf-8
 
 # IMPORT
+
 import pygame
 import math
 from game_file.game import Game
